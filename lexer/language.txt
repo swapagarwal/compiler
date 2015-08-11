@@ -1,0 +1,47 @@
+name -> [a-zA-Z_][a-zA-Z0-9_]*
+const -> [0-9]+ | true | false
+string -> \".*[^\\]\"
+
+printable -> name, printable_ | string, printable_ | eps
+printable_ -> name, printable_ | string, printable_ | name | string
+
+args -> name, args_ | eps
+args_ -> name, args_ | name
+
+program -> program_ main_
+
+program_ -> function program_ | declaration program_ | eps
+main_ -> task main () statements end
+
+function -> task function_header statements endtask
+function_header -> #name(args) | @name(args) | name(args)
+function_call -> name ( args )
+
+loop -> while | for
+while -> cycle condition: loop_statements endcycle
+for -> repeat name in op_assignment,condition,op_assignment: loop_statements endrepeat
+
+statements -> statement; statements | eps
+statement -> input | output | declaration | assignment | conditional | loop | function_call | submit expression
+loop_statements -> statement; loop_statements | rest; | next; | eps
+
+condition -> (condition) | not condition | condition and condition | condition or condition | expression relation expression | expression
+relation -> == | > | < | >= | <= | !=
+
+expression -> ~expression | expression & expression | expression '|' expression | expression1
+expression1 -> expression1 + expression1 | expression1 - expression1 | - expression1 | expression2
+expression2 -> expression2 * expression2 | expression2 / expression2 | expression2 % expression2 | expression3
+expression3 -> term | condition | (expression)
+
+conditional -> if_then_else | if_then
+if_then_else -> test condition pass: statements fail: statements endtest
+if_then -> test condition pass: statements endtest
+
+term -> name | const | function_call
+declaration -> enroll #name | enroll #assignment | enroll @name | enroll @assignment
+
+op_assignment -> assignment | eps
+assignment -> name = expression
+
+input -> read printable
+output -> write printable

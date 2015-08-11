@@ -1,0 +1,18 @@
+task #fibo (n)
+	test n < 2 pass:
+		submit 1;
+	fail: submit n * fibo (n-1);
+	endtest
+endtask
+
+task main()
+	enroll #t;
+	enroll #n;
+	read t;
+	cycle (t>0)
+		read n;
+		write fibo (n);
+		t=t-1;
+	endcycle
+	"tes\"t"
+endtask
