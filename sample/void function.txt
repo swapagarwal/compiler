@@ -1,0 +1,33 @@
+task #f(#x,#y)
+	write "f called\n";
+	enroll #t;
+	t=y;
+	test x==0
+		pass: submit t;
+		fail:
+	endtest;
+	submit f(x-1,y)*x;
+endtask
+
+task #g(#x,#y)
+	write "g called\n";
+	test x==0
+		pass: submit y;
+		fail:
+	endtest;
+	submit f(x-1,y)*x;
+endtask
+
+task h(#n)
+	write "void h called\n";
+endtask
+
+task main()
+	enroll #n;
+	enroll #m;
+	read n;
+	read m;
+	write g(n,m);
+	write "\n";
+	h(n);
+endtask

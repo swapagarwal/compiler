@@ -1,0 +1,13 @@
+task #f(#x)
+	test x==0
+		pass: submit 1;
+		fail:
+	endtest;
+	submit f(x-1)*x;
+endtask
+
+task main()
+	enroll #n;
+	read n;
+	write f(n);
+endtask

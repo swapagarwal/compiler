@@ -1,0 +1,13 @@
+task main()
+	enroll #n;
+	read n;
+	enroll @f;
+	test n>10 pass:
+		f=true;
+	fail: f=false;
+	endtest;
+	test f and n&1 pass:
+		write "success\n";
+		fail: write "n should be odd and greater than 10\n";
+	endtest;
+endtask

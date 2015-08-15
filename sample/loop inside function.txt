@@ -1,0 +1,11 @@
+task f(#n)
+	cycle n>0:
+		write "test\n";
+		n=n-1;
+	endcycle;
+endtask
+
+task main()
+	enroll #n=5;
+	f(n);
+endtask

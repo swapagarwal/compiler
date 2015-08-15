@@ -1,0 +1,7 @@
+task main()
+	enroll #n;
+	enroll #m;
+	read n;
+	read m;
+	write (m+n)*3+m/(2*n);
+endtask
