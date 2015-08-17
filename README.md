@@ -34,3 +34,5 @@ make parser
 ```
 
 This will create a `parse_tree.txt` file containing the parse tree of the program and a `mips.s` file which contains the MIPS code.
+
+![Demo](https://github.com/swapagarwal/compiler/blob/master/demo.gif)
